@@ -1,34 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Un petit test
 
-## Getting Started
+## L'objectif
 
-First, run the development server:
+Il faudrait que tu crées une application web qui affiche différentes formes sur une page (pour constituer un joli portrait). Ces formes sont stockées en base de données. Pour chacune de ces formes (cercle, rectangle ou texte) tu as la position et la taille.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+De façon un peu plus précise :
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- pour les rectangles
+  - tu les affiches avec une bodure pleine noire d'un pixel et un fond blanc (ouais c'est un peu basique)
+  - tu t'aides de la position qui est celle du point en haut à gauche, on te donne aussi la largeur et la longueur (on est sympa)
+  - tu affiches optionnellement le texte dans une popup quand on clique dessus (c'est rigolo)
+- pour les cercles
+  - tu les affiches avec une bodure pleine noire d'un pixel et un fond blanc (ouais on se repète)
+  - tu t'aides de la position qui est celle du point en haut à gauche de la boite englobant le cercle et on te donne juste la largeur (tu devrais arriver à trouver la hauteur)
+  - tu affiches optionnellement le texte dans une popup quand on clique dessus
+- pour les textes c'est la position du milieu du texte, on ne te donne pas la largeur, ni la hauteur (par contre si tu peux l'afficher en Arial 40px ce sera plus beau)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Tout ça devrait dessiner quelque chose dans un rectangle de 600x800 pixels. Il ne faut pas afficher tout ce qui dépasse.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Si tu es fort et motivé, tu peux protéger cette page par une authentification par fomulaire. Ceci est optionnel.
 
-## Learn More
+Les priorités sont
 
-To learn more about Next.js, take a look at the following resources:
+1. Ca marche (sans les fonctionnalités optionnelles)
+2. C'est maintenable
+3. C'est sécurisé
+4. C'est joli
+5. Ca marche (avec les fonctionnalités optionnelles)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## La base de données
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+C'est du SQL Server sur Azure, facile !
 
-## Deploy on Vercel
+- Serveur : slowsense.database.windows.net
+- Base : ShapesTest
+- Login : SlowSenseTest
+- Password : slow-test-55
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+On te laisse découvrir les tables, tu devrais tout comprendre.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Les technologies
+
+- Le front est dans la technologie de ton choix
+- Le back est dans la techonologie de ton choix, se connecte à la DB fournie, et s'occupe d'envoyer toutes les bonnes Shapes au front
+
+## Tips
+
+Si tu pars avec un ORM il existe une commande scaffold qui permet de générer le modèle à partir de la base, par exemple avec entity framework :
+`dotnet ef dbcontext scaffold "Data Source=le-serveur;Initial Catalog=la-base;User ID=le-login;Password=le-password" Microsoft.EntityFrameworkCore.SqlServer`
+
+## Tes droits
+
+- Tu peux t'aider d'internet (parfois il y a des choses vraies dessus)
+- Tu peux être créatif (on aime bien)
+- Tu as 2 heures
+
+## Conclusion
+
+Allez GO, on est avec toi !
+test-elias.md
+Affichage de test-elias.md en cours...

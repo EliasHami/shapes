@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model EFMigrationsHistory {
+  MigrationId    String @id(map: "PK___EFMigrationsHistory") @db.NVarChar(150)
+  ProductVersion String @db.NVarChar(32)
+
+  @@map("__EFMigrationsHistory")
+}
+
+model Shapes {
+  Id          String     @id(map: "PK_Shapes") @default(dbgenerated("newid()"), map: "DF_Shapes_ID") @db.UniqueIdentifier
+  FormsTypeId Int
+  PositionX   Decimal    @db.Decimal(18, 0)
+  PositionY   Decimal    @db.Decimal(18, 0)
+  Width       Int?
+  Height      Int?
+  Text        String?    @db.NVarChar(50)
+  Order       Int        @default(0, map: "DF_Shapes_Order")
+  ShapeTypes  ShapeTypes @relation(fields: [FormsTypeId], references: [Id], onUpdate: NoAction, map: "FK_Shapes_ShapeTypes")
+}
+
+model ShapeTypes {
+  Id     Int      @id(map: "PK_ShapeTypes") @default(autoincrement())
+  Name   String   @db.NVarChar(50)
+  Shapes Shapes[]
+}
+
+model Users {
+  Id       String @id(map: "PK_Users") @default(dbgenerated("newid()"), map: "DF_Users_ID") @db.UniqueIdentifier
+  Email    String @db.NVarChar(50)
+  Password String @db.NVarChar(50)
+}
