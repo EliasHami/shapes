@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client'
 import { Cercle, Rectangle } from '@/app/_components/Popover'
-const prisma = new PrismaClient()
+import { prisma } from '@/db'
+
 
 
 export default async function Home() {
@@ -20,7 +20,6 @@ export default async function Home() {
       FormsTypeId: 1
     }
   })
-  console.log({ cercles })
   return (
     <main className="relative w-[600px] h-[800px] overflow-hidden">
       {rectangles.map((rectangle) => (
